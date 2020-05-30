@@ -1,4 +1,4 @@
-package twitter4j.timeline;
+package si.data;
 
 import twitter4j.Status;
 import twitter4j.Twitter;

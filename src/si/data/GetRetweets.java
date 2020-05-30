@@ -1,4 +1,4 @@
-package twitter4j.json;
+package si.data;
 
 import twitter4j.*;
 
