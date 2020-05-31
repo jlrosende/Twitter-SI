@@ -20,7 +20,7 @@ public class ProcessBehaviuor extends SimpleBehaviour {
     @Override
     public void action() {
         while (true) {
-            ACLMessage aclMessage = myAgent.receive(mt);
+            ACLMessage aclMessage = this.getAgent().receive(mt);
             if (aclMessage != null)  {
                 // System.out.println();
                 // System.out.println(this.getAgent().getLocalName()+": Recibo el mensaje: \n" + aclMessage.getContent());

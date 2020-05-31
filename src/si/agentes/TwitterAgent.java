@@ -20,7 +20,7 @@ public class TwitterAgent extends Agent implements TwitterListerner {
         System.out.println("[TwitterAgent] Nombre AID: " + this.getAID().getName());
         MainInterfaz interfaz = new MainInterfaz(this);
         interfaz.run();
-        this.addBehaviour(new ResponderBehaviour(this));
+        this.addBehaviour(new ResponderBehaviour(this, interfaz.getInterfaz()));
     }
 
     @Override
@@ -32,10 +32,8 @@ public class TwitterAgent extends Agent implements TwitterListerner {
 
     public void getUserTimeline(String username)
     {
-        System.out.println("Action Start.");
         try {
             List<Status> statuses = GetUserTimeline.getTimeLine(username);
-            System.out.println("Size: " + statuses.size());
             for (Status status : statuses) {
                 this.sendMsg(status.getText());
             }

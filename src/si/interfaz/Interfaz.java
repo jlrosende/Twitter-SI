@@ -22,7 +22,6 @@ public class Interfaz extends JFrame {
     public JTextArea output;
     public JTextField input;
     public JPanel panel;
-    public static String testString = "test";
 
     private TwitterListerner listener;
 
@@ -38,7 +37,7 @@ public class Interfaz extends JFrame {
         // Center of screen
         // this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setResizable(false);
+        this.setResizable(true);
     }
 
     public void createFrame()
@@ -63,6 +62,7 @@ public class Interfaz extends JFrame {
         enterButton.setActionCommand(ENTER);
         enterButton.addActionListener(e -> {
             String username = input.getText();
+            output.setText("Buscando Tweets de @" + username + "\n");
             listener.getUserTimeline(username);
         });
 
