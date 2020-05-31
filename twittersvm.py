@@ -8,7 +8,6 @@ import sys
 import getopt
 import argparse
 
-
 def preprocess_document(doc):
     stopset = set(stopwords.words('spanish'))
     stemmer = PorterStemmer()
@@ -58,7 +57,6 @@ def launch_query(corpus, q, filename='/tmp/vsm_docs.mm', precission=0.25, recomp
     for doc, score in ranking:
         if score > precission:
             print("[ Score = " + "%.3f" % round(score, 3) + "] " + corpus[doc])
-
 
 if __name__ == "__main__":
 
