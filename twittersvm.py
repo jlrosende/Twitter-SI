@@ -7,6 +7,8 @@ from gensim import corpora, models, similarities
 import sys
 import getopt
 import argparse
+import os.path
+
 
 def preprocess_document(doc):
     stopset = set(stopwords.words('spanish'))
@@ -20,7 +22,7 @@ def preprocess_document(doc):
 
 def create_dictionary(docs, filename='/tmp/vsm.dict', recompile=False):
     dictionary = None
-    if recompile:
+    if recompile or not os.path.exists(filename):
         pdocs = [preprocess_document(doc) for doc in docs]
         dictionary = corpora.Dictionary(pdocs)
         dictionary.save(filename)
@@ -37,7 +39,7 @@ def docs2bows(corpus, dictionary, filename='/tmp/vsm_docs.mm'):
 
 def create_TF_IDF_model(corpus, filename='/tmp/vsm_docs.mm', recompile=False):
     dictionary = create_dictionary(corpus, recompile=recompile)
-    if recompile:
+    if recompile or not os.path.exists(filename):
         docs2bows(corpus, dictionary)
     loaded_corpus = corpora.MmCorpus(filename)
     tfidf = models.TfidfModel(loaded_corpus)
@@ -57,6 +59,7 @@ def launch_query(corpus, q, filename='/tmp/vsm_docs.mm', precission=0.25, recomp
     for doc, score in ranking:
         if score > precission:
             print("[ Score = " + "%.3f" % round(score, 3) + "] " + corpus[doc])
+
 
 if __name__ == "__main__":
 
