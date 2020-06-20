@@ -45,8 +45,8 @@ public class TwitterAgent extends Agent implements TwitterListerner {
     private void sendMsg(String textMsg) {
         ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
         AID r = new AID();
-        r.setName("ProcessAgent@192.168.43.141:1200/JADE");
-        r.addAddresses("http://192.168.43.141:7778/acc");
+        r.setName("ProcessAgent@192.168.0.74:1200/JADE");
+        r.addAddresses("http://192.168.0.74:7778/acc");
         msg.addReceiver(r);
         msg.setContent(textMsg);
         this.send(msg);
